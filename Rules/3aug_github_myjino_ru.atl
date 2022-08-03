@@ -1,0 +1,40 @@
+meta:
+  name: "myjino_ru_extract"
+  description: "A rule to extracts myjinop[.]ru addresses from repositories."
+  reference: "https://twitter.com/stephenlacy/status/1554697077430505473"
+  author: "r00tten"
+  version: "1.0"
+
+scripts:
+  # import re
+  # import base64
+
+  # def myjino_ru_extract(data: str) -> str:
+  #     addr = ""
+
+  #     pattr_encoded = "KD86KD86KD88PWhvc3Q6JykuKz8oPz0nKSl8KD86KD88PXBvcnQ6KVxkKyg/PSwpKXwoPzooPzw9cGF0aDonKS4rPyg/PScpKSl8KD86KD88PVwuUG9zdFwoIikuKz8oPz0iLCkp"
+  #     pattr = re.compile(base64.b64decode(pattr_encoded).decode())
+
+  #     matched = re.findall(pattr, data)
+  #     if len(matched) == 3:
+  #         addr = matched[0] + ":" + matched[1] + matched[2]
+  #     else:
+  #         addr = "".join(matched)
+
+  #     return addr
+  myjino_ru_extract: "aW1wb3J0IHJlCmltcG9ydCBiYXNlNjQKCmRlZiBteWppbm9fcnVfZXh0cmFjdChkYXRhOiBzdHIpIC0+IHN0cjoKICAgIGFkZHIgPSAiIgoKICAgIHBhdHRyX2VuY29kZWQgPSAiS0Q4NktEODZLRDg4UFdodmMzUTZKeWt1S3o4b1B6MG5LU2w4S0Q4NktEODhQWEJ2Y25RNktWeGtLeWcvUFN3cEtYd29Qem9vUHp3OWNHRjBhRG9uS1M0clB5Zy9QU2NwS1NsOEtEODZLRDg4UFZ3dVVHOXpkRndvSWlrdUt6OG9QejBpTENrcCIKICAgIHBhdHRyID0gcmUuY29tcGlsZShiYXNlNjQuYjY0ZGVjb2RlKHBhdHRyX2VuY29kZWQpLmRlY29kZSgpKQoKICAgIG1hdGNoZWQgPSByZS5maW5kYWxsKHBhdHRyLCBkYXRhKQogICAgaWYgbGVuKG1hdGNoZWQpID09IDM6CiAgICAgICAgYWRkciA9IG1hdGNoZWRbMF0gKyAiOiIgKyBtYXRjaGVkWzFdICsgbWF0Y2hlZFsyXQogICAgZWxzZToKICAgICAgICBhZGRyID0gIiIuam9pbihtYXRjaGVkKQoKICAgIHJldHVybiBhZGRy"
+
+chain:
+  file_read:
+    input: $param.file
+    func: file_read_utf8
+
+  addr_extract:
+    input: 
+        - $scripts.myjino_ru_extract
+        - $file_read
+    func: python_executor
+
+  addr_stdout:
+    input: $addr_extract
+    func: printer
