@@ -1,0 +1,78 @@
+meta:
+  name: "atomic_wallet_mars_stealer"
+  description: "A rule to process mars stealer that is distributed by fake atomic wallet website."
+  reference1: "https://www.bleepingcomputer.com/news/security/cloned-atomic-wallet-website-is-pushing-mars-stealer-malware/"
+  reference2: "https://twitter.com/ViriBack/status/1554137490872799233"
+  author: "r00tten"
+  version: "1.0"
+
+scripts:
+    unzip_bitly: "aW1wb3J0IGlvCmltcG9ydCB6aXBmaWxlCgpkZWYgdW56aXBfYml0bHkoZGF0YTogYnl0ZXMpIC0+IHN0cjoKICAgIGJhdF9maWxlID0gIiIKCiAgICBuYW1lX2xpc3QgPSBbXQoKICAgIGZpbGVfbGlrZV9vYmplY3QgPSBpby5CeXRlc0lPKGRhdGEpCiAgICB3aXRoIHppcGZpbGUuWmlwRmlsZShmaWxlX2xpa2Vfb2JqZWN0KSBhcyB6aXBfZmlsZToKICAgICAgICBuYW1lX2xpc3QgPSB6aXBfZmlsZS5uYW1lbGlzdCgpCgogICAgICAgIHppcF9maWxlLmV4dHJhY3RhbGwoIi4iKQoKICAgIGZvciBpIGluIG5hbWVfbGlzdDoKICAgICAgICBpZiAnLmJhdCcgaW4gaToKICAgICAgICAgICAgYmF0X2ZpbGUgPSBpCiAgICAgICAgICAgIGJyZWFrCiAgICAKICAgIHJldHVybiBiYXRfZmlsZQ=="
+    arg_parser: "aW1wb3J0IHJlCmltcG9ydCBiYXNlNjQKCmRlZiBhcmdfcGFyc2VyKGRhdGE6IHN0cikgLT4gZGljdDoKICAgIHJlc3VsdCA9IHt9CgogICAgcGF0dHJfZW5jb2RlZCA9ICJLRDg4UFZ4YlUzbHpkR1Z0WEM1RGIyNTJaWEowWEYwNk9rWnliMjFDWVhObE5qUlRkSEpwYm1kY0tDa3VLejhvUHoxY0tTaz0iCiAgICBkb2xsYXJfZW5jb2RlZCA9ICJYbHdrIgogICAgbmV3bGluZV9lbmNvZGVkID0gIkNnPT0iCgogICAgYXJyID0gZGF0YS5zcGxpdChiYXNlNjQuYjY0ZGVjb2RlKG5ld2xpbmVfZW5jb2RlZCkuZGVjb2RlKCkpCiAgICByZXN1bHRbJ2FyZ19kYXRhJ10gPSBhcnJbbGVuKGFycikgLSAxXQoKICAgIHBhdHRyID0gcmUuY29tcGlsZShiYXNlNjQuYjY0ZGVjb2RlKHBhdHRyX2VuY29kZWQpLmRlY29kZSgpKQoKICAgIG1hdGNoZWQgPSByZS5maW5kYWxsKHBhdHRyLCBkYXRhKQogICAgZm9yIGkgaW4gcmFuZ2UobGVuKG1hdGNoZWQpKToKICAgICAgICBpZiByZS5zZWFyY2goYmFzZTY0LmI2NGRlY29kZShkb2xsYXJfZW5jb2RlZCkuZGVjb2RlKCksIG1hdGNoZWRbaV0pOgogICAgICAgICAgICByZXN1bHRbJ2tleSddID0gbWF0Y2hlZFtpICsgMV0ucmVwbGFjZSgiJyIsICIiKQogICAgICAgICAgICByZXN1bHRbJ2l2J10gPSBtYXRjaGVkW2kgKyAyXS5yZXBsYWNlKCInIiwgIiIpCiAgICAgICAgICAgIGJyZWFrCiAgICAKICAgIHJldHVybiByZXN1bHQ="
+    aes_gzip: "JHR5cGVfZGVmaW5pdGlvbiA9IEAiDQp1c2luZyBTeXN0ZW0uVGV4dDsNCnVzaW5nIFN5c3RlbS5JTzsNCnVzaW5nIFN5c3RlbS5JTy5Db21wcmVzc2lvbjsNCnVzaW5nIFN5c3RlbS5TZWN1cml0eS5DcnlwdG9ncmFwaHk7DQoNCnB1YmxpYyBjbGFzcyBJT1hUdlkgeyANCiAgICBwdWJsaWMgc3RhdGljIGJ5dGVbXSBZWm56V0goYnl0ZVtdIGlucHV0LCBieXRlW10ga2V5LCBieXRlW10gaXYpIHsgDQogICAgICAgIEFlc01hbmFnZWQgYWVzID0gbmV3IEFlc01hbmFnZWQoKTsgDQogICAgICAgIGFlcy5Nb2RlID0gQ2lwaGVyTW9kZS5DQkM7IA0KICAgICAgICBhZXMuUGFkZGluZyA9IFBhZGRpbmdNb2RlLlBLQ1M3OyANCiAgICAgICAgSUNyeXB0b1RyYW5zZm9ybSBkZWNyeXB0b3IgPSBhZXMuQ3JlYXRlRGVjcnlwdG9yKGtleSwgaXYpOyANCiAgICAgICAgYnl0ZVtdIGRlY3J5cHRlZCA9IGRlY3J5cHRvci5UcmFuc2Zvcm1GaW5hbEJsb2NrKGlucHV0LCAwLCBpbnB1dC5MZW5ndGgpOyANCiAgICAgICAgZGVjcnlwdG9yLkRpc3Bvc2UoKTsgYWVzLkRpc3Bvc2UoKTsgcmV0dXJuIGRlY3J5cHRlZDsgDQogICAgfSANCiAgICANCiAgICBwdWJsaWMgc3RhdGljIGJ5dGVbXSBNUm1tR20oYnl0ZVtdIGJ5dGVzKSB7IA0KICAgICAgICBNZW1vcnlTdHJlYW0gbXNpID0gbmV3IE1lbW9yeVN0cmVhbShieXRlcyk7IA0KICAgICAgICBNZW1vcnlTdHJlYW0gbXNvID0gbmV3IE1lbW9yeVN0cmVhbSgpOyANCiAgICAgICAgdmFyIGdzID0gbmV3IEdaaXBTdHJlYW0obXNpLCBDb21wcmVzc2lvbk1vZGUuRGVjb21wcmVzcyk7IA0KICAgICAgICBncy5Db3B5VG8obXNvKTsgDQogICAgICAgIGdzLkRpc3Bvc2UoKTsgDQogICAgICAgIG1zaS5EaXNwb3NlKCk7IA0KICAgICAgICBtc28uRGlzcG9zZSgpOyANCg0KICAgICAgICByZXR1cm4gbXNvLlRvQXJyYXkoKTsgDQogICAgfSANCn0NCiJADQoNCkFkZC1UeXBlIC1UeXBlRGVmaW5pdGlvbiAkdHlwZV9kZWZpbml0aW9uIC1MYW5ndWFnZSBDU2hhcnANCmZ1bmN0aW9uIGFlc19nemlwKCRkYXRhLCAka2V5LCAkaXYpIHsNCiAgICAkcmVzdWx0ID0gW0lPWFR2WV06Ok1SbW1HbShbSU9YVHZZXTo6WVpueldIKFtTeXN0ZW0uQ29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJGRhdGEpLCBbU3lzdGVtLkNvbnZlcnRdOjpGcm9tQmFzZTY0U3RyaW5nKCRrZXkpLCBbU3lzdGVtLkNvbnZlcnRdOjpGcm9tQmFzZTY0U3RyaW5nKCRpdikpKQ0KICAgIHJldHVybiBbU3lzdGVtLkNvbnZlcnRdOjpUb0Jhc2U2NFN0cmluZygkcmVzdWx0KQ0KfQ0K"
+    base64_decode: "aW1wb3J0IGJhc2U2NAoKZGVmIGJhc2U2NF9kZWNvZGUoZGF0YTogYnl0ZXMpIC0+IGJ5dGVzOgogICAgCiAgICByZXR1cm4gYmFzZTY0LmI2NGRlY29kZShkYXRhKQ=="
+    arg_parser_dotnet: "aW1wb3J0IHJlCmltcG9ydCBiYXNlNjQKCmRlZiBhcmdfcGFyc2VyX2RvdG5ldChkYXRhOiBzdHIpIC0+IGRpY3Q6CiAgICByZXN1bHQgPSB7fQoKICAgIHBhdHRyX2VuY29kZWQgPSAiVzJFdGVrRXRXakF0T1Z3ckx6MWRlekV3TUN4OSIKCiAgICByZXN1bHRbJ2FyZ19kYXRhJ10gPSByZS5zZWFyY2goYmFzZTY0LmI2NGRlY29kZShwYXR0cl9lbmNvZGVkKSwgZGF0YSkuZ3JvdXAoKS5kZWNvZGUoKQogICAgcmVzdWx0WydhcmdfZGF0YSddID0gcmVzdWx0WydhcmdfZGF0YSddWzpsZW4ocmVzdWx0WyJhcmdfZGF0YSJdKSAtIDRdCgoKICAgIGtleUlMX2VuY29kZWQgPSBiJ0tEODhQVng0TWpnSUFBQUtjaWtvV3dBdFhIaG1abDE3TkgwcCcKICAgIHN1X2VuY29kZWQgPSBiJ1d3QXQvMTE3Tkgwb1B6MG9Xd0F0LzExN05IMG9JMVZUQUNrcEtRPT0nCiAgICBiYXNlX2VuY29kZWQgPSBiJ1FsTktRZz09JwogICAga2V5SUwgPSByZS5maW5kYWxsKGJhc2U2NC5iNjRkZWNvZGUoa2V5SUxfZW5jb2RlZCksIGRhdGEpCiAgICBzdSA9IHJlLnNlYXJjaChiYXNlNjQuYjY0ZGVjb2RlKHN1X2VuY29kZWQpLCBkYXRhKS5ncm91cCgpCiAgICBiYXNlID0gcmUuc2VhcmNoKGJhc2U2NC5iNjRkZWNvZGUoYmFzZV9lbmNvZGVkKSwgZGF0YSkuc3BhbigpWzBdCgogICAgYWRkcl9rZXkgPSBpbnQuZnJvbV9ieXRlcyhzdSwgJ2xpdHRsZScpICsgYmFzZSArIChpbnQuZnJvbV9ieXRlcyhrZXlJTFswXSwgJ2xpdHRsZScpICYgMHgwMGZmZmZmZikKICAgIGFkZHJfaXYgPSBpbnQuZnJvbV9ieXRlcyhzdSwgJ2xpdHRsZScpICsgYmFzZSArIChpbnQuZnJvbV9ieXRlcyhrZXlJTFsxXSwgJ2xpdHRsZScpICYgMHgwMGZmZmZmZikKICAgIGxlbmd0aF9rZXkgPSBkYXRhW2FkZHJfa2V5XQogICAgbGVuZ3RoX2l2ID0gZGF0YVthZGRyX2l2XQogICAgCiAgICByZXN1bHRbJ2tleSddID0gZGF0YVthZGRyX2tleSArIDE6YWRkcl9rZXkgKyAxICsgbGVuZ3RoX2tleV0uZGVjb2RlKCd1dGYtMTYnLCBlcnJvcnM9J2lnbm9yZScpCiAgICByZXN1bHRbJ2l2J10gPSBkYXRhW2FkZHJfaXYgKyAxOmFkZHJfaXYgKyAxICsgbGVuZ3RoX2l2XS5kZWNvZGUoJ3V0Zi0xNicsIGVycm9ycz0naWdub3JlJykKCiAgICByZXR1cm4gcmVzdWx0"
+
+chain:
+    zip_file_read:
+        input: $param.file
+        func: file_read_bin
+
+    unzip:
+        input:
+            - $scripts.unzip_bitly 
+            - $zip_file_read
+        func: python_executor
+
+    bat_file_read:
+        input: $unzip
+        func: file_read_utf8
+    
+    arg_parser:
+        input:
+            - $scripts.arg_parser
+            - $bat_file_read
+        func: python_executor
+
+    process_the_bat:
+        input: 
+            - $scripts.aes_gzip
+            - $arg_parser.arg_data
+            - $arg_parser.key
+            - $arg_parser.iv
+        func: powershell_executor
+
+    base64_decode:
+        input:
+            - $scripts.base64_decode
+            - $process_the_bat
+        func: python_executor
+
+    save_the_output:
+        input: $base64_decode
+        func: save_file_bytes
+
+    arg_parser_dotnet:
+        input:
+            - $scripts.arg_parser_dotnet
+            - $base64_decode
+        func: python_executor
+
+    process_the_dotnet:
+        input: 
+            - $scripts.aes_gzip
+            - $arg_parser_dotnet.arg_data
+            - $arg_parser_dotnet.key
+            - $arg_parser_dotnet.iv
+        func: powershell_executor
+
+    base64_decode2:
+        input:
+            - $scripts.base64_decode
+            - $process_the_dotnet
+        func: python_executor
+
+    save_the_output2:
+        input: $base64_decode2
+        func: save_file_bytes
+    
