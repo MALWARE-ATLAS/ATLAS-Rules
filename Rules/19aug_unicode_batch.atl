@@ -1,0 +1,36 @@
+meta:
+    name: "19aug_unicode_batch"
+    description: "A rule to process batch file that is obfuscated with unicode chars."
+    reference: "https://twitter.com/malwrhunterteam/status/1559881926688784385"
+    hash: "16b4a6fec76b452f77a6832871ff2e906d673e557a0e6c2673fc952181d1319b"
+    author: "r00tten"
+    version: "1.0"
+
+scripts:
+    clean_batch: "aW1wb3J0IHJlCgpkZWYgY2xlYW5fYmF0Y2goZGF0YTogc3RyKSAtPiBzdHI6CiAgICByZXN1bHQgPSAiIgoKICAgIGRhdGEgPSBkYXRhLmVuY29kZSgidXRmOCIpLmRlY29kZSgiYXNjaWkiLCBlcnJvcnM9Imlnbm9yZSIpCiAgICBkYXRhID0gZGF0YS5yZXBsYWNlKCI6XG4iLCAiIikKICAgIGRhdGEgPSBkYXRhLnJlcGxhY2UoIl4iLCAiIikKCiAgICB2YXJpYWJsZXMgPSByZS5zZWFyY2gociJTRVQgKC4rPyk9KC4rPykiLCBkYXRhKQogICAgY21kID0gcmUuc2VhcmNoKHIiU0VULitcbigoXG4qLispXG4qKSIsIGRhdGEsIHJlLk1VTFRJTElORSkuZ3JvdXAoMSkKCiAgICByZXN1bHQgPSBjbWQucmVwbGFjZSgiJXt9JSIuZm9ybWF0KHZhcmlhYmxlcy5ncm91cCgxKSksIHZhcmlhYmxlcy5ncm91cCgyKSkKICAgIAogICAgcmV0dXJuIHJlc3VsdA=="
+    get_url: "aW1wb3J0IHJlCmltcG9ydCBiYXNlNjQKCmRlZiBnZXRfdXJsKGRhdGE6IHN0cikgLT4gc3RyOgogICAgcmVzdWx0ID0gIiIKCiAgICB1cmxfZW5jb2RlZCA9IGIiS0Q4OFBTaGNKM3hjSWlrcGFIUjBjQ2g4Y3lrNkx5OWJZUzE2UVMxYU1DMDVYQzljTGwwclB5Zy9QVnd4S1E9PSIKICAgIHJlc3VsdCA9IHJlLnNlYXJjaChyIig/PD0oXCd8XCIpKWh0dHAofHMpOi8vW2EtekEtWjAtOVwvXC5dKz8oPz1cMSkiLCBkYXRhKS5ncm91cCgpCgogICAgcmV0dXJuIHJlc3VsdA=="
+
+chain:
+    s1:
+        input: $param.file
+        func: file_read_utf8
+
+    s2:
+        input: 
+            - $scripts.clean_batch
+            - $s1
+        func: python_executor
+
+    s3:
+        input:
+            - $scripts.get_url
+            - $s2
+        func: python_executor
+
+    s4:
+        input: $s3
+        func: download_from_remote_server
+    
+    s5:
+        input: $s4
+        func: save_file_bytes
