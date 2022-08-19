@@ -1,0 +1,49 @@
+meta:
+    name: "19aug_crypto_otc_lnk"
+    description: "A rule to process the zip file."
+    reference: "https://twitter.com/malwrhunterteam/status/1560563222624710656"
+    hash: "1411c8f084179eb44bb14a24859a190945cea5c723c3e01f742a0885d8cb97d2"
+    author: "r00tten"
+    version: "1.0"
+
+scripts:
+    unzip_bitly: "aW1wb3J0IGlvCmltcG9ydCB6aXBmaWxlCgpkZWYgdW56aXBfYml0bHkoZGF0YTogYnl0ZXMpIC0+IHN0cjoKICAgIG5hbWVfbGlzdCA9IFtdCgogICAgZmlsZV9saWtlX29iamVjdCA9IGlvLkJ5dGVzSU8oZGF0YSkKICAgIHdpdGggemlwZmlsZS5aaXBGaWxlKGZpbGVfbGlrZV9vYmplY3QpIGFzIHppcF9maWxlOgogICAgICAgIG5hbWVfbGlzdCA9IHppcF9maWxlLm5hbWVsaXN0KCkKCiAgICAgICAgemlwX2ZpbGUuZXh0cmFjdGFsbCgiLiIpCgoKICAgIHJldHVybiBuYW1lX2xpc3Q="
+    find_lnk: "aW1wb3J0IHJlCgpkZWYgZmluZF9sbmsoYXJyOiBsaXN0KSAtPiBzdHI6CiAgICByZXN1bHQgPSAiIgoKICAgIHBhdHRyID0gcmUuY29tcGlsZShyIlwuLis/XC5sbmskIikKCiAgICBmb3IgaSBpbiBhcnI6CiAgICAgICAgaWYgcmUuc2VhcmNoKHBhdHRyLCBpKToKICAgICAgICAgICAgcmVzdWx0ID0gaQogICAgICAgICAgICBicmVhawoKICAgIHJldHVybiByZXN1bHQ="
+    get_lnk_target: "aW1wb3J0IExua1BhcnNlMwoKZGVmIGdldF9sbmtfdGFyZ2V0KHBhdGg6IHN0cikgLT4gZGljdDogIAogICAgcmVzdWx0ID0ge30KICAgIHRhcmdldCA9ICIiCiAgICBjb21tYW5kID0gIiIKCiAgICB3aXRoIG9wZW4ocGF0aCwgInJiIikgYXMgZmlsZToKICAgICAgICBsbmsgPSBMbmtQYXJzZTMubG5rX2ZpbGUoZmlsZSkKICAgICAgICBsbmtfanNvbiA9IGxuay5nZXRfanNvbigpCgogICAgICAgIGZvciBpIGluIGxua19qc29uWyJ0YXJnZXQiXVsiaXRlbXMiXToKICAgICAgICAgICAgaWYgaVsiY2xhc3MiXSA9PSAiUm9vdCBGb2xkZXIiIG9yICAgICAgICAgICAgICAgaVsiY2xhc3MiXSA9PSAiVm9sdW1lIEl0ZW0iOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgZWxpZiBpWyJjbGFzcyJdID09ICJGaWxlIGVudHJ5IjoKICAgICAgICAgICAgICAgIGlmIGlbImZsYWdzIl0gPT0gIklzIGRpcmVjdG9yeSI6CiAgICAgICAgICAgICAgICAgICAgdGFyZ2V0ICs9IGlbInByaW1hcnlfbmFtZSJdICsgIi8iCiAgICAgICAgICAgICAgICBlbGlmIGlbImZsYWdzIl0gPT0gIklzIGZpbGUiOgogICAgICAgICAgICAgICAgICAgIHRhcmdldCArPSBpWyJwcmltYXJ5X25hbWUiXQogICAgICAgIAogICAgICAgIGNvbW1hbmQgPSBsbmtfanNvblsiZGF0YSJdLmdldCgiY29tbWFuZF9saW5lX2FyZ3VtZW50cyIsICIiKQogICAgICAgIAogICAgICAgIHJlc3VsdFsidGFyZ2V0Il0gPSB0YXJnZXQKICAgICAgICByZXN1bHRbImNvbW1hbmQiXSA9IGNvbW1hbmQKCiAgICByZXR1cm4gcmVzdWx0"
+    get_url: "aW1wb3J0IHJlCgpkZWYgZ2V0X3VybChkYXRhOiBzdHIpIC0+IHN0cjoKICAgIHJlc3VsdCA9ICIiCiAgICAKICAgIHJlc3VsdCA9IHJlLnNlYXJjaChyIig/PD0oXCd8XCIpKWh0dHAofHMpOi8vW2EtekEtWjAtOVwvXC49X1wrXD9dKz8oPz1cMSkiLCBkYXRhKS5ncm91cCgpCiAgICAKICAgIHJldHVybiByZXN1bHQK"
+
+chain:
+    s1:
+        input: $param.file
+        func: file_read_bin
+
+    s2:
+        input:
+            - $scripts.unzip_bitly 
+            - $s1
+        func: python_executor
+
+    s3:
+        input:
+            - $scripts.find_lnk 
+            - $s2
+        func: python_executor
+
+    s4:
+        input:
+            - $scripts.get_lnk_target
+            - $s3
+        func: python_executor
+
+    s5:
+        input:
+            - $scripts.get_url
+            - $s4.command
+        func: python_executor
+
+    printer:
+        input: $s5
+        func: printer
+
+
+        
