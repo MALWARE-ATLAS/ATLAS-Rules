@@ -1,6 +1,7 @@
 meta:
   name: "iso_research"
   description: "A rule for ISO research project."
+  reference: "https://r00tten.com/2022/08/30/atlas-enters-iso-lnk-hype-train"
   author: "r00tten"
   version: "1.0"
 
